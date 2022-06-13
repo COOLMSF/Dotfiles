@@ -1,0 +1,124 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2020 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+[[layers]]
+name = "colorscheme"
+
+
+[[layers]]
+name = 'shell'
+default_position = 'top'
+default_height = 30
+
+[[layer]]
+name = 'fzf'
+
+[[layer]]
+name = 'git'
+
+
+[[layer]]
+name = 'lang#go'
+
+[[layers]]
+  name = "lang#python"
+
+[[layers]]
+name = "gtags"
+gtagslabel = "pygments"
+
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    # colorscheme = "AAAAAAA"
+    colorscheme = "NeoSolarized"
+    colorscheme_bg = "dark"
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = true
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "nil"
+    statusline_iseparator = "nil"
+    buffer_index_type = 4
+    enable_tabline_filetype_icon = true
+    enable_statusline_mode = false
+    default_indent = 4
+    expand_tab = false
+
+    # 文件树插件可选值包括：
+    # - nerdtree （默认）
+    # - vimfiler: 需要编译 vimproc.vim, 在目录 bundle/vimproc.vim 下
+    # - defx: 需要 +py3 支持
+    filemanager = "nerdtree"
+
+    # options for layers checkers
+    enable_neomake = true
+    enable_ale = true
+    lint_on_the_fly = false
+
+
+    # bootstrap configuration
+    bootstrap_before = "myspacevim#before"
+    # bootstrap_after = "myspacevim#after"
+
+    snippet_engine = "neosnippet"
+		# option for autocomplete
+		autocomplete_method = "coc"
+		# autocomplete_method = "asyncomplete"
+		# autocomplete_method = "deoplete"
+
+[[custom_plugins]]
+    repo = "https://github.com/airblade/vim-gitgutter.git"
+    merged = false
+[[custom_plugins]]
+	repo = "https://github.com/luochen1990/rainbow.git"
+[[custom_plugins]]
+	repo = "https://github.com/neomake/neomake.git"
+
+[[layers]]
+name = 'checkers'
+show_cursor_error = true
+# enable = false
+
+
+[[layers]]
+name = "lang#c"
+clang_executable = "clang"
+enable_clang_syntax_highlight = true
+	[layer.clang_std]
+		c = "c11"
+		cpp = "c++1z"
+		objc = "c11"
+		objcpp = "c++1z"
+
+[[layers]]
+  name = "lsp"
+  filetypes = [
+    "c",
+    "cpp"
+  ]
+  enabled_clients = ['clangd']
+  [layers.override_cmd]
+    c = ["clangd"]
+
+[[layers]]
+  name = "format"
+# Enable autocomplete layer
+[[layers]]
+  name = "autocomplete"
+  auto_completion_return_key_behavior = "smart"
+  auto_completion_tab_key_behavior = "smart"
+  auto_completion_delay = 200
+  auto_completion_complete_with_key_sequence = "smart"
+  auto_completion_complete_with_key_sequence_delay = 0.1
+  enabled_clients = ['clangd']
+
